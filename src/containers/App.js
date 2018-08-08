@@ -4,15 +4,37 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'asfas1', name: 'Didi', age: 26 },
-      { id: 'asfas2', name: 'Kendrick', age: 28 },
-      { id: 'asfas3', name: 'Jay', age: 29 }
-    ],
-    otherState: 'some other values',
-    showPersons: false
+  constructor(props) {
+    super(props);
+    console.log('[App.js] Inside Constructor', props);
+    this.state = {
+      persons: [
+        { id: 'asfas1', name: 'Didi', age: 26 },
+        { id: 'asfas2', name: 'Kendrick', age: 28 },
+        { id: 'asfas3', name: 'Jay', age: 29 }
+      ],
+      otherState: 'some other values',
+      showPersons: false
+    }
   }
+
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount()');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount()');
+  }
+
+  // state = {
+  //   persons: [
+  //     { id: 'asfas1', name: 'Didi', age: 26 },
+  //     { id: 'asfas2', name: 'Kendrick', age: 28 },
+  //     { id: 'asfas3', name: 'Jay', age: 29 }
+  //   ],
+  //   otherState: 'some other values',
+  //   showPersons: false
+  // }
 
   switchNameHandler = (newName) => {
     this.setState({
@@ -55,6 +77,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] Inside render()');
     let persons = null;
 
     if ( this.state.showPersons ) {
@@ -67,6 +90,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          appTitle={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler} />
